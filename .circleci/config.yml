@@ -28,7 +28,7 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
-      - run: echo "deployed to production server"
+      - run: echo "deployed to" $NODE_ENV "server"
 
 workflows:
   version: 2
