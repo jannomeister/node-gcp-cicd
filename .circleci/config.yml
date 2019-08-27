@@ -8,21 +8,21 @@ jobs:
       - run: npm install
       - run: npm test
   dev:
+    docker:
+      - image: circleci/node:10.15.3
     branches:
       only:
         - development
-    docker:
-      - image: circleci/node:10.15.3
     steps:
       - checkout
       - run: npm install
       - run: npm test
   prod:
-    branches:
-      only:
-        master
     docker:
       - image: circleci/node:10.15.3
+    branches:
+      only:
+        - master
     steps:
       - checkout
       - run: npm install
