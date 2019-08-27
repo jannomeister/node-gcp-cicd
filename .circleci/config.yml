@@ -1,28 +1,32 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:10.15.3
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm test
-  dev:
-    docker:
-      - image: circleci/node:10.15.3
-    branches:
-      only:
-        - development
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm test
-  prod:
-    docker:
-      - image: circleci/node:10.15.3
+  one:
     branches:
       only:
         - master
+        - development
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+  two:
+    branches:
+      only:
+        - development
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+  three:
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node:10.15.3
     steps:
       - checkout
       - run: npm install
@@ -33,6 +37,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - test
-      - dev
-      - prod
+      - one
+      - two
+      - three
