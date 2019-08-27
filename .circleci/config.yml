@@ -41,12 +41,14 @@ workflows:
       - development:
           requires:
             - build_test
-          branches:
-            only:
-              - development
+          filters:
+            branches:
+              only:
+                - development
       - production:
           requires:
             - development
-          branches:
-            only:
-              - master
+          filters:
+            branches:
+              only:
+                - master
