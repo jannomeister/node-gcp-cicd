@@ -10,17 +10,14 @@ jobs:
   development:
     requires:
       - build
-    docker:
-      - image: circleci/node:10.15.3
     steps:
       - checkout
+      - run: node -v
       - run: echo "deploy to development!!!!"
   production:
     requires:
       - build
       - development
-    docker:
-      - image: circleci/node:10.15.3
     steps:
       - checkout
       - run: echo "deploy to production!"
