@@ -11,7 +11,7 @@ jobs:
 
   # development server deployment
   development:
-    requires: build
+    requires: build_test
     filters:
       branches:
         only:
