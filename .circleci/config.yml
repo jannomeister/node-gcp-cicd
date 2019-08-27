@@ -39,7 +39,7 @@ workflows:
                 - development
       - production:
           requires:
-            - development
+            - build_test
           filters:
             branches:
               only:
