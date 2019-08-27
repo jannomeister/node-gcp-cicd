@@ -8,7 +8,7 @@ jobs:
       - run: npm install
       - run: npm test
 
-  staging:
+  dev:
     branches:
       only:
         - development
@@ -19,7 +19,7 @@ jobs:
       - run: npm install
       - run: npm test
 
-  production:
+  prod:
     branches:
       only:
         master
@@ -36,5 +36,5 @@ workflows:
   build:
     jobs:
       - test
-      - staging
-      - production
+      - dev
+      - prod
