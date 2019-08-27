@@ -1,31 +1,44 @@
+version: 2
+jobs:
+  # building and testing
+  build_test:
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+
+  # development server deployment
+  development:
+    requires: build
+    filters:
+      branches:
+        only:
+          - development
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run: echo "deployed to development server"
+
+  # production server deployment
+  production:
+    requires: build
+    filters:
+      branches:
+        only:
+          - master
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run: echo "deployed to production server"
+
 workflows:
   version: 2
   dev_prod:
     jobs:
-      build:
-        docker:
-          - image: circleci/node:10.15.3
-        steps:
-          - checkout
-          - run: npm install
-          - run: npm test
-      development:
-        requires: build
-        filters:
-          branches:
-            only: development
-        docker:
-          - image: circleci/node:10.15.3
-        steps:
-          - checkout
-          - run: echo "deployed to development server"
-      production:
-        requires: build
-        filters:
-          branches:
-            only: master
-        docker:
-          - image: circleci/node:10.15.3
-        steps:
-          - checkout
-          - run: echo "deployed to production server"
+      - build_test
+      - development
+      - production
