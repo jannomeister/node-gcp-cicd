@@ -14,8 +14,7 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
-      - run: npm install
-      - run: npm test
+      - run: echo "deploy to development!!!!"
   production:
     requires:
       - build
@@ -24,8 +23,7 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
-      - run: npm install
-      - run: npm test
+      - run: echo "deploy to production!"
 
 
 workflows:
