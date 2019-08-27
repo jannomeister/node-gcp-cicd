@@ -11,10 +11,10 @@ jobs:
 
   # development server deployment
   development:
-    filters:
-      branches:
-        only:
-          - development
+    # filters:
+    #   branches:
+    #     only:
+    #       - development
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -23,10 +23,10 @@ jobs:
 
   # production server deployment
   production:
-    filters:
-      branches:
-        only:
-          - master
+    # filters:
+    #   branches:
+    #     only:
+    #       - master
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -41,6 +41,12 @@ workflows:
       - development:
           requires:
             - build_test
+          branches:
+            only:
+              - development
       - production:
           requires:
             - development
+          branches:
+            only:
+              - master
