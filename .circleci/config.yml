@@ -11,8 +11,6 @@ jobs:
 
   # development server deployment
   development:
-    requires:
-      - build_test
     filters:
       branches:
         only:
@@ -25,8 +23,6 @@ jobs:
 
   # production server deployment
   production:
-    requires: 
-      - development
     filters:
       branches:
         only:
@@ -42,5 +38,9 @@ workflows:
   dev_prod:
     jobs:
       - build_test
-      - development
-      - production
+      - development:
+          requires:
+            - build_test
+      - production:
+          requires:
+            - development
