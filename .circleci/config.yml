@@ -24,7 +24,7 @@ jobs:
 
   # production server deployment
   production:
-    requires: build
+    requires: development
     filters:
       branches:
         only:
