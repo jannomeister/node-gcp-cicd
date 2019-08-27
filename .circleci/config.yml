@@ -6,19 +6,24 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
+      - run: node -v
       - run: npm install
       - run: npm test
 
   # development server deployment
   development:
+    environment:
+      NODE_ENV: development
     docker:
       - image: circleci/node:10.15.3
     steps:
       - checkout
-      - run: echo "deployed to development server"
+      - run: echo "deployed to" $NODE_ENV "server"
 
   # production server deployment
   production:
+    environment:
+      NODE_ENV: production
     docker:
       - image: circleci/node:10.15.3
     steps:
