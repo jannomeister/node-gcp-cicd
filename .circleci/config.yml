@@ -1,10 +1,10 @@
 version: 2
 jobs:
   one:
-    branches:
-      only:
-        - master
-        - development
+    # branches:
+    #   only:
+    #     - master
+    #     - development
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -12,9 +12,9 @@ jobs:
       - run: npm install
       - run: npm test
   two:
-    branches:
-      only:
-        - development
+    # branches:
+    #   only:
+    #     - development
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -22,9 +22,9 @@ jobs:
       - run: npm install
       - run: npm test
   three:
-    branches:
-      only:
-        - master
+    # branches:
+    #   only:
+    #     - master
     docker:
       - image: circleci/node:10.15.3
     steps:
